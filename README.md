@@ -1,95 +1,113 @@
-# V3NOM
+<h1 align="center">🕸️ Web Eater v2.1.0</h1>
 
-> **Lightweight Android command agent built for authorized device management, security research, and educational testing.**
+<p align="center">
+  <strong>An Advanced, High-Speed Directory Fuzzer Built with Python</strong><br>
+  Created with ❤️ by <a href="https://github.com/Jack-tech9355">Jack-tech9355</a>
+</p>
 
-![Android](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![Java](https://img.shields.io/badge/Language-Java-orange?style=for-the-badge&logo=openjdk&logoColor=white)
-![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84?style=for-the-badge&logo=androidstudio&logoColor=white)
-![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
-![Telegram](https://img.shields.io/badge/API-Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-2.1.0-blue?style=for-the-badge&logo=appveyor" alt="Version">
+  <img src="https://img.shields.io/badge/Python-3.x-yellow?style=for-the-badge&logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Platform-Termux%20%7C%20Kali%20Linux-green?style=for-the-badge&logo=linux" alt="Platform">
+  <img src="https://img.shields.io/badge/License-MIT-red?style=for-the-badge" alt="License">
+</p>
 
 ---
 
-## Overview
+## 📖 About Web Eater
 
-V3NOM is a lightweight Android Studio project demonstrating a modular command-based architecture for Android applications. It is intended for Android development practice, background service implementation, and Telegram Bot integration in authorized environments.
+**Web Eater** is a multithreaded directory and file fuzzing tool designed for security professionals, bug bounty researchers, and ethical hackers working within an authorized scope. It helps identify publicly reachable directories, files, and endpoints on web servers.
 
-## Features
+Features include real-time scan progress, configurable HTTP status-code filtering, recursive scanning, request delays, and output export to support efficient web enumeration.
 
-- 📱 Device Status
-- 📍 Location
-- 🎙️ microphone 
-- 📷 Camera front/back
-- 👥 Contacts
-- 💬 SMS
-- 📂 File Manager
-- 🔄 Foreground Service
-- 🚀 Auto Start
-- ⚡ Background Service
+## 🚀 Features
 
-## Requirements
+- ⚡ **Multithreaded Scanning** — Configure concurrent workers to speed up requests.
+- 📊 **Live Progress Display** — Track scan progress with a real-time progress bar.
+- 🎯 **HTTP Status Filtering** — Show only selected response codes, such as `200`, `301`, or `403`.
+- 🔄 **Recursive Scanning** — Optionally scan directories discovered during a run.
+- 🧭 **User-Agent Rotation** — Rotate User-Agent values to help test how a site responds to different clients. This does not guarantee WAF evasion.
+- ⏱️ **Request Delay** — Add a delay between requests to reduce request rate and server load.
+- 💾 **Save Results** — Export findings to a text file for later review.
+- 🕵️ **Response-Size Filtering** — Exclude known response sizes to help filter custom error pages.
 
-- Android Studio
-- Java
-- Android SDK
-- Gradle
-- Telegram Bot Token
-- Telegram Chat ID
+## 📦 Installation
 
-## Installation
+### Requirements
+
+- Python 3.x
+- Termux on Android, or Kali Linux / another Debian-based Linux distribution
+- Git
+
+### Install on Termux or Linux
 
 ```bash
-git clone https://github.com/blackhatvenomm/V3NOM.git
+# 1. Clone the repository
+git clone https://github.com/Jack-tech9355/web-eater.git
+
+# 2. Enter the project directory
+cd web-eater
+
+# 3. Make the installer executable
+chmod +x install.sh
+
+# 4. Run the installer
+./install.sh
 ```
 
-1. Open in Android Studio.
-2. Let Gradle sync.
-3. Configure your Telegram Bot credentials.
-4. Build the APK.
-5. Install on an authorized test device.
+## 💻 Usage
 
-## Configuration
-
-```properties
-BOT_TOKEN=YOUR_BOT_TOKEN
-CHAT_ID=YOUR_CHAT_ID
-```
-## 📋 Available Commands
-
-| Command | Description |
-|---------|-------------|
-| `/alive` | Check device availability |
-| `/status` | Get device information |
-| `/help` | Display available commands |
-| `/location` | Retrieve current location |
-| `/camera` | Capture image using the rear camera |
-| `/frontcam` | Capture image using the front camera |
-| `/audio<seconds>` | Record audio for the specified duration (e.g., `/audio20` records for 20 seconds) |
-| `/contacts` | Access contacts |
-| `/sms` | Access SMS messages |
-| `/files` | Browse recent gallery media |
-| `/filemn` | Browse files using the file manager |
-
-## Build
-
-```text
-Build → Build APK(s)
-Build → Generate Signed Bundle / APK
+```bash
+python3 webeater.py -u <URL> -w <WORDLIST> [OPTIONS]
 ```
 
-## Tech Stack
+### ⚙️ Command-Line Options
 
-- Java
-- Android SDK
-- Android Studio
-- Gradle
-- Telegram Bot API
+| Option | Description |
+|---|---|
+| `-u`, `--url` | Target URL, for example `https://example.com`. |
+| `-w`, `--wordlist` | Path to a wordlist file, for example `common.txt`. |
+| `-e`, `--extensions` | File extensions to test, such as `php,html,js`. |
+| `-t`, `--threads` | Number of worker threads (default: `10`). |
+| `-sc`, `--status` | Filter results by HTTP status codes, such as `"200,403"`. |
+| `-d`, `--delay` | Delay between requests in seconds, such as `0.5`. |
+| `-o`, `--output` | Save results to a file, such as `results.txt`. |
+| `-rec`, `--recursive` | Enable recursive directory scanning. |
+| `-m`, `--method` | HTTP method, such as `GET` or `POST`. |
+| `--exclude` | Exclude responses with a specified size to help filter custom error pages. |
 
-## License
+## 🎯 Example Scans
 
-MIT License.
+Run these examples only against systems you own or have explicit permission to test.
 
-## Disclaimer
+### 1. Basic Scan
 
-This project is intended for educational purposes, Android development practice, security research, and authorized testing only. Use it only on devices you own or are explicitly authorized to manage or evaluate.
+```bash
+python3 webeater.py -u https://example.com -w common.txt -e php,html -t 20
+```
+
+### 2. Filter Results and Save Output
+
+```bash
+python3 webeater.py -u https://example.com -w common.txt -sc "200" -d 0.5 -o results.txt -rec
+```
+
+### 3. Exclude a Known Response Size
+
+```bash
+python3 webeater.py -u https://example.com -w common.txt --exclude 9121
+```
+
+---
+
+## ⚠️ Responsible Use
+
+Web Eater is intended for educational use and authorized security testing only. Scan only websites and systems you own or have explicit permission to assess. Obtain authorization before testing, follow the target's rules and rate limits, and stop if your testing causes disruption.
+
+The author, **Jack-tech9355**, is not responsible for misuse of this tool or damage caused by unauthorized activity. Unauthorized access or testing may violate applicable laws.
+
+---
+
+<p align="center">
+  <em>If you find Web Eater useful, consider starring the repository ⭐</em>
+</p>
